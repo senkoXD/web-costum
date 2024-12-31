@@ -1,0 +1,221 @@
+<html>
+ <head>
+  <title>Web Portfolio Senko</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/typewriter-effect@2.18.0/dist/core.js"></script> <!-- TypewriterJS -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio website Raditya Budi Santosa - Pelajar, Pengembang, dan Editor">
+  <title>Play Audio Button</title>
+  <style>
+   body {
+     margin: 0;
+     font-family: 'Poppins', sans-serif;
+     background-color: #0b0d23;
+     color: #ffffff;
+   }
+    .button-container {
+      text-align: center;
+    }
+    #playButton {
+      background: #0066cc;
+      color: white;
+      font-size: 18px;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    #playButton:hover {
+      background: #0055a3;
+      transform: scale(1.05);
+    }
+    #playButton:active {
+      background: #003d73;
+      transform: scale(0.95);
+    }
+    #playButton.playing {
+      background: #ff6f61;
+    }
+
+    h1 {
+      color: white;
+      margin-bottom: 20px;
+    }
+   .container {
+     text-align: center;
+     padding: 50px;
+   }
+   .header {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding: 20px 50px;
+     position: relative;
+   }
+   .header .logo {
+     font-size: 24px;
+     font-weight: 700;
+     color: #ff4a57;
+   }
+   .header nav {
+     display: flex;
+     gap: 15px;
+     margin-right: 70px; /* Jarak dari profil kecil */
+   }
+   .header nav a {
+     color: #ffffff;
+     text-decoration: none;
+     font-weight: 400;
+     transition: color 0.3s;
+   }
+   .header nav a:hover {
+     color: #ff4a57;
+   }
+   .profile-image-small {
+     position: absolute;
+     top: 15px;
+     right: 20px;
+     z-index: 10;
+   }
+   .profile-image-small img {
+     border-radius: 50%;
+     width: 50px;
+     height: 50px;
+     border: 2px solid #ff4a57;
+   }
+   .intro {
+     margin-top: 50px;
+   }
+   .intro h1 {
+     font-size: 48px;
+     font-weight: 700;
+     margin: 10px 0;
+   }
+   .intro p {
+     font-size: 16px;
+     font-weight: 300;
+     margin: 10px 0 30px;
+   }
+   .social-icons {
+     margin: 20px 0;
+   }
+   .social-icons a {
+     color: #ff4a57;
+     margin: 0 10px;
+     font-size: 20px;
+     text-decoration: none;
+   }
+   .profile-image {
+     margin-top: 50px;
+   }
+   .profile-image img {
+     border-radius: 50%;
+     width: 300px;
+     height: 300px;
+   }
+   .btn-link {
+        text-decoration: none;
+        background-color: #ff4a57;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+    .btn-link:hover {
+        background-color: #e0434e;
+    }
+  </style>
+ </head>
+ <body>
+  <div class="header">
+   <div class="logo">Senn</div>
+   <nav>
+  <a href="index.html">HOME</a>
+  <a href="sections/about.html">ABOUT</a>
+  <a href="sections/portfolio.html">PROJECTS</a>
+  <a href="#">CONTACT</a>
+</nav>
+   <div class="profile-image-small">
+   <img alt="Profil Raditya Budi Santosa" src="https://files.catbox.moe/mbumss.png"/>
+   </div>
+  </div>
+  <div class="container">
+   <div class="intro">
+    <h2>WELCOME!</h2>
+    <h1 id="dynamic-text">
+     Aku Seorang <span id="role-text">Pengembang</span>
+    </h1>
+    <p>
+    halo, perkenalkan nama saya Raditya Budi santosa sebagai pelajar SMKN 6 Batam selaku website ini :v
+    </p>
+    <div class="social-icons">
+    <a href="https://github.com/senkoXD" target="_blank"><i class="fab fa-github"></i></a>
+    <a href="https://tiktok.com/@raditzzkamu90" target="_blank"><i class="fab fa-tiktok"></i></a>
+    <a href="https://wa.me/6282285225923" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+   </div>
+   <div class="profile-image">
+<img alt="Animasi profil Raditya" src="https://files.catbox.moe/62haxi.gif"/>
+   </div>
+  </div>
+  <div class="container">
+  <h1> CATBOX </h1>
+  <nav>
+  <a href="https://catbox.moe/" class="btn-link" target="_parent">kunjungi website</a>
+  </nav>
+    <div class="button-container">
+    <h1>Audio Player</h1>
+    <!-- Audio element -->
+    <audio id="audio" src="https://files.catbox.moe/7vjbc0.mp3"></audio>
+    
+    <!-- Button to play/pause the audio -->
+    <button id="playButton">Play Audio</button>
+  </div>
+  <script>
+  // Improved audio player script
+  const audio = document.getElementById('audio');
+  const playButton = document.getElementById('playButton');
+
+  playButton.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play();
+      playButton.textContent = 'Pause Audio';
+      playButton.classList.add('playing');
+    } else {
+      audio.pause();
+      playButton.textContent = 'Play Audio';
+      playButton.classList.remove('playing');
+    }
+  });
+</script>
+
+<script>
+  // Improved typewriter effect script
+  const typewriter = new Typewriter('#role-text', {
+    loop: true,
+    delay: 75
+  });
+
+  typewriter
+    .typeString('Pengembang')
+    .pauseFor(1500)
+    .deleteAll()
+    .typeString('Pelajar')
+    .pauseFor(1500)
+    .deleteAll()
+    .typeString('Editor')
+    .pauseFor(1500)
+    .start();
+</script>
+  <div class="container">
+  <footer>
+    <p>&copy; 2024 Senko | Dibuat dengan <i class="fas fa-heart" style="color: #ff4a57;"></i> oleh Radit.</p>
+  </footer>
+  </div>
+ </body>
+</html>
