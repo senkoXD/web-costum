@@ -168,31 +168,6 @@
   <nav>
   <a href="https://catbox.moe/" class="btn-link" target="_parent">kunjungi website</a>
   </nav>
-    <div class="button-container">
-    <h1>Audio Player</h1>
-    <!-- Audio element -->
-    <audio id="audio" src="https://files.catbox.moe/7vjbc0.mp3"></audio>
-    
-    <!-- Button to play/pause the audio -->
-    <button id="playButton">Play Audio</button>
-  </div>
-  <script>
-  // Improved audio player script
-  const audio = document.getElementById('audio');
-  const playButton = document.getElementById('playButton');
-
-  playButton.addEventListener('click', () => {
-    if (audio.paused) {
-      audio.play();
-      playButton.textContent = 'Pause Audio';
-      playButton.classList.add('playing');
-    } else {
-      audio.pause();
-      playButton.textContent = 'Play Audio';
-      playButton.classList.remove('playing');
-    }
-  });
-</script>
 
 <script>
   // Improved typewriter effect script
